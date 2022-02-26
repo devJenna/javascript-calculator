@@ -56,6 +56,9 @@ header h2 {
     border-radius: 50% / 100%;
 }
 
+.calculator .number, .decimal {
+    color: black;
+}
 .calculator .clear, .pl-minus, .percent {
     /* background-color: rgb(250, 248, 114); */
     background-color: rgb(248, 245, 81);
