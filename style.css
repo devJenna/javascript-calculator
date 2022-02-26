@@ -43,7 +43,7 @@ header h2 {
     cursor: pointer;
     /* remove default input settings in ipad, iphone */
     -webkit-appearance: none;
-    padding: 0px;
+    /* padding: 0px; */
 }
 .calculator .current-output {
     border-radius: 0.3125rem;
