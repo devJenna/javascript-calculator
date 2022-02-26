@@ -38,7 +38,7 @@ header h2 {
 }
 .calculator form input {
     border: none;
-    border-radius: 50%;
+    border-radius: 50vh;
     font-size: 1.5rem;
     cursor: pointer;
     /* remove default input settings in ipad, iphone */
@@ -56,7 +56,7 @@ header h2 {
 }
 .calculator form input[value="="] {
     grid-column: span 2;
-    border-radius: 50% / 100%;
+    border-radius: 100vh / 100vh;
 }
 
 .calculator .number, .decimal, .current-output {
