@@ -6,18 +6,23 @@
 body {
     background-color: #1f1f1f;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    width: 100vw;
 }
 body, form * {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .calculator {
+    /* padding: 5px; */
     background-color: gray;
+    border-radius: 10px;
 }
-.calculator h2 {
+
+h2 {
     text-align: center;
     padding: 30px;
     background-color: #1f1f1f;
