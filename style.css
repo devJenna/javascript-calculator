@@ -42,6 +42,7 @@ header h2 {
     font-size: 1.5rem;
     cursor: pointer;
     -webkit-appearance: none;
+    -webkit-border-radius:0;
 }
 .calculator .current-output {
     border-radius: 0.3125rem;
