@@ -17,16 +17,16 @@ body, form * {
     text-align: center;
     min-height: 100vh;
 }
-.calculator {
-    background-color: gray;
-    border-radius: 0.625em;
-}
 header h2 {
     text-align: center;
     padding: 1.875rem;
     background-color: #1f1f1f;
     color: white;
     font-size: 1.5rem;
+}
+.calculator {
+    background-color: gray;
+    border-radius: 0.625em;
 }
 .calculator form {
     display: grid;
@@ -41,6 +41,7 @@ header h2 {
     border-radius: 50%;
     font-size: 1.5rem;
     cursor: pointer;
+    -webkit-appearance: none;
 }
 .calculator .current-output {
     border-radius: 0.3125rem;
@@ -56,8 +57,9 @@ header h2 {
     border-radius: 50% / 100%;
 }
 
-.calculator .number, .decimal {
+.calculator .number, .decimal, .current-output {
     color: black;
+    background-color: rgb(240, 240, 240);
 }
 .calculator .clear, .pl-minus, .percent {
     /* background-color: rgb(250, 248, 114); */
@@ -70,21 +72,16 @@ header h2 {
 }
 
 .calculator .number:hover, .decimal:hover {
-    /* background-color: rgba(46, 45, 45, 0.527); */
-    /* background-color: rgb(27, 27, 117); */
-    /* background-color: rgba(11, 11, 139, 0.671); */
     background-color: rgba(19, 19, 117, 0.637);
     color: white;
 }
 .clear:hover, .pl-minus:hover , .percent:hover {
-    /* color: rgb(250, 248, 114); */
-    /* color: rgba(11, 11, 139, 0.671); */
     background-color: rgb(255, 254, 190);
     color:black;
 }
 .operator:hover, .operator-result:hover {
     /* background-color: rgba(233, 233, 233, 0.541); */
-    /* background-color: rgba(223, 222, 222, 0.4); */
+    /* background-color: rgba(46, 45, 45, 0.527); */
     background-color: rgba(245, 245, 245, 0.418);
     color: white;
 }
