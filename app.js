@@ -3,6 +3,7 @@ const clearButton = document.querySelector(".clear");
 const plminusButton = document.querySelector(".pl-minus");
 const percentButton = document.querySelector(".percent");
 const resultButton = document.querySelector(".operator-result");
+
 let prevVal = "";
 let newVal = "";
 let operator = "";
