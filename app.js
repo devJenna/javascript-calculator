@@ -77,6 +77,28 @@ document.querySelector("#decimal").addEventListener("click", onClickNumber("."))
 
 const operatorButton = document.querySelectorAll(".operator");
 const onClickOperator = (op) => () => {
+    if (newVal) {
+        prevVal = parseFloat(prevVal);
+        newVal = parseFloat(newVal);
+        switch (operator) {
+            case "+":
+                resultVal = prevVal + newVal;
+                break;
+            case "-":
+                resultVal = prevVal - newVal;
+                break;
+            case "*":
+                resultVal = prevVal * newVal;
+                break;
+            case "/":
+                resultVal = prevVal / newVal;
+                break;
+            default:
+                break;
+        }
+        prevVal = resultVal;
+        newVal = "";
+    }
     if (prevVal) {
         operator = op;
         currentOutput.value += op;
@@ -128,8 +150,7 @@ document.querySelector("#calculate").addEventListener("click", () => {
     // else {
     //     alert("enter number first");
     // }
-    // currentOutput.value += resultVal;
-})
+});
 
 
 
