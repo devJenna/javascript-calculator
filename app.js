@@ -41,75 +41,42 @@ percentButton.addEventListener("click", function () {
 });
 
 const numberButton = document.querySelectorAll(".number");
-const onClickNumber = (number) => () => {
+const onClickNumber = (event) => {
     if (operator) {
-        // console.log(prevVal);
-        // console.log(newVal);
-        // console.log(resultVal);
-        if (!newVal) {
-            // resultVal = "";
-            currentOutput.value += "";
-        }
-        newVal += number;
-        currentOutput.value += number;
+        newVal += event.target.value;
     } else {
-        prevVal += number;
-        currentOutput.value += number;
+        prevVal += event.target.value;
     }
-    // console.log(prevVal); 
-    // console.log(newVal); 
-    // console.log(resultVal);
-    // currentOutput.value += number;
+    currentOutput.value += event.target.value;
+}
 
-};
-document.querySelector("#n0").addEventListener("click", onClickNumber("0"));
-document.querySelector("#n1").addEventListener("click", onClickNumber("1"));
-document.querySelector("#n2").addEventListener("click", onClickNumber("2"));
-document.querySelector("#n3").addEventListener("click", onClickNumber("3"));
-document.querySelector("#n4").addEventListener("click", onClickNumber("4"));
-document.querySelector("#n5").addEventListener("click", onClickNumber("5"));
-document.querySelector("#n6").addEventListener("click", onClickNumber("6"));
-document.querySelector("#n7").addEventListener("click", onClickNumber("7"));
-document.querySelector("#n8").addEventListener("click", onClickNumber("8"));
-document.querySelector("#n9").addEventListener("click", onClickNumber("9"));
-document.querySelector("#decimal").addEventListener("click", onClickNumber("."));
+document.querySelector("#n0").addEventListener("click", onClickNumber);
+document.querySelector("#n1").addEventListener("click", onClickNumber);
+document.querySelector("#n2").addEventListener("click", onClickNumber);
+document.querySelector("#n3").addEventListener("click", onClickNumber);
+document.querySelector("#n4").addEventListener("click", onClickNumber);
+document.querySelector("#n5").addEventListener("click", onClickNumber);
+document.querySelector("#n6").addEventListener("click", onClickNumber);
+document.querySelector("#n7").addEventListener("click", onClickNumber);
+document.querySelector("#n8").addEventListener("click", onClickNumber);
+document.querySelector("#n9").addEventListener("click", onClickNumber);
+document.querySelector("#decimal").addEventListener("click", onClickNumber);
 
 
 const operatorButton = document.querySelectorAll(".operator");
-const onClickOperator = (op) => () => {
-    if (newVal) {
-        prevVal = parseFloat(prevVal);
-        newVal = parseFloat(newVal);
-        switch (operator) {
-            case "+":
-                resultVal = prevVal + newVal;
-                break;
-            case "-":
-                resultVal = prevVal - newVal;
-                break;
-            case "*":
-                resultVal = prevVal * newVal;
-                break;
-            case "/":
-                resultVal = prevVal / newVal;
-                break;
-            default:
-                break;
-        }
-        prevVal = resultVal;
-        newVal = "";
-    }
+const onClickOperator = (event) => {
+
     if (prevVal) {
-        operator = op;
-        currentOutput.value += op;
+        operator = event.target.value;
+        currentOutput.value += event.target.value;
     } else {
         alert("enter number first");
     }
 }
-document.querySelector("#add").addEventListener("click", onClickOperator("+"));
-document.querySelector("#subtract").addEventListener("click", onClickOperator("-"));
-document.querySelector("#multiply").addEventListener("click", onClickOperator("*"));
-document.querySelector("#divide").addEventListener("click", onClickOperator("/"));
+document.querySelector("#add").addEventListener("click", onClickOperator);
+document.querySelector("#subtract").addEventListener("click", onClickOperator);
+document.querySelector("#multiply").addEventListener("click", onClickOperator);
+document.querySelector("#divide").addEventListener("click", onClickOperator);
 
 
 
