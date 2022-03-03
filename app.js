@@ -40,25 +40,31 @@ percentButton.addEventListener("click", function () {
     // console.log(resultVal); 
 });
 
-// using forEach for all the number buttons
+
 const numberButton = document.querySelectorAll(".number");
-numberButton.forEach(num => num.addEventListener("click", event => {
+// using for loop
+const onClickNumber = function () {
+    number = this.value;
     if (operator) {
         if (!newVal) {
             currentOutput.value += "";
         }
-        newVal += event.target.value;
-        currentOutput.value += event.target.value;
+        newVal += number;
+        currentOutput.value += number;
     } else {
-        prevVal += event.target.value;
-        currentOutput.value += event.target.value;
+        prevVal += number;
+        currentOutput.value += number;
     }
-}));
+};
+for (let i = 0; i < numberButton.length; i++) {
+    numberButton[i].addEventListener("click", onClickNumber);
+};
 
 
-// using forEach for all the operator buttons
 const operatorButton = document.querySelectorAll(".operator");
-operatorButton.forEach(op => op.addEventListener("click", event => {
+// using for loop
+const onClickOperator = function () {
+    op = this.value;
     if (newVal) {
         prevVal = parseFloat(prevVal);
         newVal = parseFloat(newVal);
@@ -83,11 +89,13 @@ operatorButton.forEach(op => op.addEventListener("click", event => {
         newVal = "";
     }
     if (prevVal) {
-        operator = event.target.value;
-        currentOutput.value += event.target.value;
+        operator = op;
+        currentOutput.value += op;
     }
-
-}));
+};
+for (let i = 0; i < operatorButton.length; i++) {
+    operatorButton[i].addEventListener("click", onClickOperator);
+};
 
 
 resultButton.addEventListener("click", () => {
@@ -127,9 +135,55 @@ resultButton.addEventListener("click", () => {
         // console.log(resultVal);
     }
     // else {
-    //     alert("enter number first");
+    //     alert("Enter number first.");
+    //     // currentOutput.value = "";
     // }
 });
 
 
 
+// // using forEach for all the number buttons
+// numberButton.forEach(num => num.addEventListener("click", event => {
+//     if (operator) {
+//         if (!newVal) {
+//             currentOutput.value += "";
+//         }
+//         newVal += event.target.value;
+//         currentOutput.value += event.target.value;
+//     } else {
+//         prevVal += event.target.value;
+//         currentOutput.value += event.target.value;
+//     }
+// }));
+
+
+// // using forEach for all the operator buttons
+// operatorButton.forEach(op => op.addEventListener("click", event => {
+//     if (newVal) {
+//         prevVal = parseFloat(prevVal);
+//         newVal = parseFloat(newVal);
+//         switch (operator) {
+//             case "+":
+//                 resultVal = prevVal + newVal;
+//                 break;
+//             case "-":
+//                 resultVal = prevVal - newVal;
+//                 break;
+//             case "*":
+//                 resultVal = prevVal * newVal;
+//                 break;
+//             case "/":
+//                 resultVal = prevVal / newVal;
+//                 break;
+//             default:
+//                 resultVal = newVal;
+//                 break;
+//         }
+//         prevVal = resultVal;
+//         newVal = "";
+//     }
+//     if (prevVal) {
+//         operator = event.target.value;
+//         currentOutput.value += event.target.value;
+//     }
+// }));
