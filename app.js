@@ -65,7 +65,31 @@ document.querySelector("#decimal").addEventListener("click", onClickNumber);
 
 const operatorButton = document.querySelectorAll(".operator");
 const onClickOperator = (event) => {
-
+    if (newVal) {
+        prevVal = parseFloat(prevVal);
+        newVal = parseFloat(newVal);
+        switch (operator) {
+            case "+":
+                resultVal = prevVal + newVal;
+                break;
+            case "-":
+                resultVal = prevVal - newVal;
+                break;
+            case "*":
+                resultVal = prevVal * newVal;
+                break;
+            case "/":
+                resultVal = prevVal / newVal;
+                break;
+            default:
+                break;
+        }
+        // console.log(prevVal); 
+        // console.log(newVal); 
+        // console.log(resultVal); 
+        prevVal = resultVal;
+        newVal = "";
+    }
     if (prevVal) {
         operator = event.target.value;
         currentOutput.value += event.target.value;
