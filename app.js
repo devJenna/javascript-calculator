@@ -40,31 +40,25 @@ percentButton.addEventListener("click", function () {
     // console.log(resultVal); 
 });
 
+// using forEach for all the number buttons
 const numberButton = document.querySelectorAll(".number");
-const onClickNumber = (event) => {
+numberButton.forEach(num => num.addEventListener("click", event => {
     if (operator) {
+        if (!newVal) {
+            currentOutput.value += "";
+        }
         newVal += event.target.value;
+        currentOutput.value += event.target.value;
     } else {
         prevVal += event.target.value;
+        currentOutput.value += event.target.value;
     }
-    currentOutput.value += event.target.value;
-}
-
-document.querySelector("#n0").addEventListener("click", onClickNumber);
-document.querySelector("#n1").addEventListener("click", onClickNumber);
-document.querySelector("#n2").addEventListener("click", onClickNumber);
-document.querySelector("#n3").addEventListener("click", onClickNumber);
-document.querySelector("#n4").addEventListener("click", onClickNumber);
-document.querySelector("#n5").addEventListener("click", onClickNumber);
-document.querySelector("#n6").addEventListener("click", onClickNumber);
-document.querySelector("#n7").addEventListener("click", onClickNumber);
-document.querySelector("#n8").addEventListener("click", onClickNumber);
-document.querySelector("#n9").addEventListener("click", onClickNumber);
-document.querySelector("#decimal").addEventListener("click", onClickNumber);
+}));
 
 
+// using forEach for all the operator buttons
 const operatorButton = document.querySelectorAll(".operator");
-const onClickOperator = (event) => {
+operatorButton.forEach(op => op.addEventListener("click", event => {
     if (newVal) {
         prevVal = parseFloat(prevVal);
         newVal = parseFloat(newVal);
@@ -82,30 +76,21 @@ const onClickOperator = (event) => {
                 resultVal = prevVal / newVal;
                 break;
             default:
+                resultVal = newVal;
                 break;
         }
-        // console.log(prevVal); 
-        // console.log(newVal); 
-        // console.log(resultVal); 
         prevVal = resultVal;
         newVal = "";
     }
     if (prevVal) {
         operator = event.target.value;
         currentOutput.value += event.target.value;
-    } else {
-        alert("enter number first");
     }
-}
-document.querySelector("#add").addEventListener("click", onClickOperator);
-document.querySelector("#subtract").addEventListener("click", onClickOperator);
-document.querySelector("#multiply").addEventListener("click", onClickOperator);
-document.querySelector("#divide").addEventListener("click", onClickOperator);
+
+}));
 
 
-
-// resultButton.addEventListener("click", () => {
-document.querySelector("#calculate").addEventListener("click", () => {
+resultButton.addEventListener("click", () => {
     prevVal = parseFloat(prevVal);
     newVal = parseFloat(newVal);
     // console.log(prevVal);
@@ -125,14 +110,17 @@ document.querySelector("#calculate").addEventListener("click", () => {
                 resultVal = prevVal / newVal;
                 break;
             default:
+                resultVal = newVal;
                 break;
         }
         // console.log(prevVal);
         // console.log(newVal);
         // console.log(resultVal);
         prevVal = resultVal;
+
         newVal = "";
         operator = "";
+
         currentOutput.value = resultVal;
         // console.log(prevVal);
         // console.log(newVal);
