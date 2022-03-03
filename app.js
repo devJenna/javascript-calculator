@@ -15,196 +15,121 @@ clearButton.addEventListener("click", function () {
     newVal = "";
     operator = "";
     resultVal = "";
+    decimalClicked = false;
     currentOutput.value = "";
 });
 
 plminusButton.addEventListener("click", function () {
     resultVal = currentOutput.value * -1;
     currentOutput.value = resultVal;
+    prevVal = resultVal;
 });
 
 percentButton.addEventListener("click", function () {
     resultVal = currentOutput.value * 0.01;
     currentOutput.value = resultVal;
-});
-
-// using for loop to avoid adding id and getting value from each element
-const numberButton = document.querySelectorAll(".number");
-for (let i = 0; i < numberButton.length; i++) {
-    numberButton[i].addEventListener("click", function () {
-        // currentOutput.value += numberButton[i].value;
-        // console.log(numberButton[i]);
-        // console.log(currentOutput.value);
-        if (resultVal) {
-            newVal = numberButton[i].value;
-            // newVal += numberButton[i].value;
-            resultVal = "";
-            // console.log(newVal);
-            // console.log(resultVal);
-        } else {
-            // if the decimal button has been clicked
-            if (numberButton[i].value === ".") {
-                if (decimalClicked != true)
-                    newVal += numberButton[i].value;
-                decimalClicked = true;
-            }
-            //if the number button has been clicked
-            else {
-                newVal += numberButton[i].value;
-                // newVal = numberButton[i].value;
-            }
-        }
-        currentOutput.value = newVal;
-        // currentOutput.value += newVal;
-        // console.log(prevVal); 
-        // console.log(newVal); 
-    });
-};
-
-const operatorButton = document.querySelectorAll(".operator");
-for (let i = 0; i < operatorButton.length; i++) {
-    operatorButton[i].addEventListener("click", function () {
-        if (!resultVal) {
-            prevVal = newVal;
-            // console.log(newVal); 
-            // console.log(prevVal); 
-        } else {
-            prevVal = resultVal;
-            // console.log(newVal); 
-            // console.log(prevVal); 
-            // console.log(resultVal);
-        }
-        newVal = "";
-        decimalClicked = false;
-        operator = operatorButton[i].value;
-        // console.log(operator);
-        resultVal = "";
-
-        // remove operator sign from currentOutput
-        // currentOutput.value = ""; 
-
-        // let operator sign visible
-        currentOutput.value += operatorButton[i].value;
-    })
-};
-
-resultButton.addEventListener("click", function () {
-    decimalClicked = false;
-    prevVal = parseFloat(prevVal);
-    newVal = parseFloat(newVal);
-
-    // console.log(prevVal);
-    // console.log(operator);
-    // console.log(newVal);
-    // console.log(currentOutput.value); 
-
-    switch (operator) {
-        case "+":
-            resultVal = prevVal + newVal;
-            break;
-        case "-":
-            resultVal = prevVal - newVal;
-            break;
-        case "*":
-            resultVal = prevVal * newVal;
-            break;
-        case "/":
-            resultVal = prevVal / newVal;
-            break;
-
-        default: //keep the value
-            resultVal = newVal;
-    }
-
-    // console.log(prevVal);
-    // console.log(operator);
-    // console.log(newVal);
-    // console.log(resultVal);
+    // console.log(prevVal); 
+    // console.log(newVal); 
+    // console.log(resultVal); 
 
     prevVal = resultVal;
-    currentOutput.value = resultVal;
+    resultVal = "";
 
-    // console.log(prevVal);
-    // console.log(operator);
-    // console.log(newVal);
-    // console.log(resultVal);
-    // console.log(currentOutput.value);
+    // console.log(prevVal); 
+    // console.log(newVal); 
+    // console.log(resultVal); 
 });
 
+const numberButton = document.querySelectorAll(".number");
+const onClickNumber = (number) => () => {
+    if (operator) {
+        // console.log(prevVal);
+        // console.log(newVal);
+        // console.log(resultVal);
+        if (!newVal) {
+            // resultVal = "";
+            currentOutput.value += "";
+        }
+        newVal += number;
+        currentOutput.value += number;
+    } else {
+        prevVal += number;
+        currentOutput.value += number;
+    }
+    // console.log(prevVal); 
+    // console.log(newVal); 
+    // console.log(resultVal);
+    // currentOutput.value += number;
+
+};
+document.querySelector("#n0").addEventListener("click", onClickNumber("0"));
+document.querySelector("#n1").addEventListener("click", onClickNumber("1"));
+document.querySelector("#n2").addEventListener("click", onClickNumber("2"));
+document.querySelector("#n3").addEventListener("click", onClickNumber("3"));
+document.querySelector("#n4").addEventListener("click", onClickNumber("4"));
+document.querySelector("#n5").addEventListener("click", onClickNumber("5"));
+document.querySelector("#n6").addEventListener("click", onClickNumber("6"));
+document.querySelector("#n7").addEventListener("click", onClickNumber("7"));
+document.querySelector("#n8").addEventListener("click", onClickNumber("8"));
+document.querySelector("#n9").addEventListener("click", onClickNumber("9"));
+document.querySelector("#decimal").addEventListener("click", onClickNumber("."));
+
+
+const operatorButton = document.querySelectorAll(".operator");
+const onClickOperator = (op) => () => {
+    if (prevVal) {
+        operator = op;
+        currentOutput.value += op;
+    } else {
+        alert("enter number first");
+    }
+}
+document.querySelector("#add").addEventListener("click", onClickOperator("+"));
+document.querySelector("#subtract").addEventListener("click", onClickOperator("-"));
+document.querySelector("#multiply").addEventListener("click", onClickOperator("*"));
+document.querySelector("#divide").addEventListener("click", onClickOperator("/"));
 
 
 
-//using eval
-// resultButton.addEventListener("click", function () {
-//     currentOutput.value = eval(currentOutput.value);
-// });
-
-// for loop replaces this part, not necessary to use id
-// const n1 = document.getElementById("n1");
-// const n2 = document.getElementById("n2");
-// const n3 = document.getElementById("n3");
-// const n4 = document.getElementById("n4");
-// const n5 = document.getElementById("n5");
-// const n6 = document.getElementById("n6");
-// const n7 = document.getElementById("n7");
-// const n8 = document.getElementById("n8");
-// const n9 = document.getElementById("n9");
-// const n0 = document.getElementById("n0");
-
-// n1.addEventListener("click", function () {
-//     currentOutput.value += 1;
-// });
-// n2.addEventListener("click", function () {
-//     currentOutput.value += 2;
-// });
-// n3.addEventListener("click", function () {
-//     currentOutput.value += 3;
-// });
-// n4.addEventListener("click", function () {
-//     currentOutput.value += 4;
-// });
-// n5.addEventListener("click", function () {
-//     currentOutput.value += 5;
-// });
-// n6.addEventListener("click", function () {
-//     currentOutput.value += 6;
-// });
-// n7.addEventListener("click", function () {
-//     currentOutput.value += 7;
-// });
-// n8.addEventListener("click", function () {
-//     currentOutput.value += 8;
-// });
-// n9.addEventListener("click", function () {
-//     currentOutput.value += 9;
-// });
-// n0.addEventListener("click", function () {
-//     currentOutput.value += 0;
-// });
+// resultButton.addEventListener("click", () => {
+document.querySelector("#calculate").addEventListener("click", () => {
+    prevVal = parseFloat(prevVal);
+    newVal = parseFloat(newVal);
+    // console.log(prevVal);
+    // console.log(newVal);
+    if (newVal) {
+        switch (operator) {
+            case "+":
+                resultVal = prevVal + newVal;
+                break;
+            case "-":
+                resultVal = prevVal - newVal;
+                break;
+            case "*":
+                resultVal = prevVal * newVal;
+                break;
+            case "/":
+                resultVal = prevVal / newVal;
+                break;
+            default:
+                break;
+        }
+        // console.log(prevVal);
+        // console.log(newVal);
+        // console.log(resultVal);
+        prevVal = resultVal;
+        newVal = "";
+        operator = "";
+        currentOutput.value = resultVal;
+        // console.log(prevVal);
+        // console.log(newVal);
+        // console.log(resultVal);
+    }
+    // else {
+    //     alert("enter number first");
+    // }
+    // currentOutput.value += resultVal;
+})
 
 
 
-
-// for loop replaces this part, not necessary to use id
-// const divideButton = document.getElementById("divide");
-// const multiplyButton = document.getElementById("multiply");
-// const subtractButton = document.getElementById("subtract");
-// const addButton = document.getElementById("add");
-
-
-// for loop replaces this part, not necessary to use id
-// divideButton.addEventListener("click", function () {
-//     currentOutput.value += "/";
-// });
-
-// multiplyButton.addEventListener("click", function () {
-//     currentOutput.value += "*"
-// });
-
-// subtractButton.addEventListener("click", function () {
-//     currentOutput.value += "-"
-// });
-
-// addButton.addEventListener("click", function () {
-//     currentOutput.value += "+"
-// });
