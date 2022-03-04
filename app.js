@@ -20,9 +20,11 @@ clearButton.addEventListener("click", function () {
 });
 
 plminusButton.addEventListener("click", function () {
-    resultVal = currentOutput.value * -1;
-    currentOutput.value = resultVal;
-    prevVal = resultVal;
+    // resultVal = currentOutput.value * -1;
+    // currentOutput.value = resultVal;
+    // prevVal = resultVal;
+    newVal = currentOutput.value * -1;
+    currentOutput.value = newVal;
 });
 
 percentButton.addEventListener("click", function () {
