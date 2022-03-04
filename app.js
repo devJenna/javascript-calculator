@@ -135,15 +135,19 @@ resultButton.addEventListener("click", () => {
         newVal = "";
         operator = "";
 
-        currentOutput.value = resultVal;
+        // currentOutput.value = resultVal;
         // console.log(prevVal);
         // console.log(newVal);
         // console.log(resultVal);
+
+    } else {
+        resultVal = newVal;
+        // alert("Enter number first.");
+        // currentOutput.value = "";
     }
-    // else {
-    //     alert("Enter number first.");
-    //     // currentOutput.value = "";
-    // }
+
+    currentOutput.value = resultVal;
+
 });
 
 
