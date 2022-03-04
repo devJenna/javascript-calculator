@@ -85,13 +85,18 @@ const onClickOperator = function () {
                 resultVal = newVal;
                 break;
         }
+        // decimalClicked = false;
         prevVal = resultVal;
         newVal = "";
     }
+    // decimalClicked = false;
     if (prevVal) {
         operator = op;
-        currentOutput.value += op;
     }
+
+    // // make operator visible whether the input starts with the number or operator
+    operator = op;
+    currentOutput.value += op;
 };
 for (let i = 0; i < operatorButton.length; i++) {
     operatorButton[i].addEventListener("click", onClickOperator);
@@ -99,6 +104,7 @@ for (let i = 0; i < operatorButton.length; i++) {
 
 
 resultButton.addEventListener("click", () => {
+    decimalClicked = false;
     prevVal = parseFloat(prevVal);
     newVal = parseFloat(newVal);
     // console.log(prevVal);
