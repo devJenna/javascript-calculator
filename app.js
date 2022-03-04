@@ -46,9 +46,12 @@ const numberButton = document.querySelectorAll(".number");
 const onClickNumber = function () {
     number = this.value;
     if (operator) {
-        if (!newVal) {
-            currentOutput.value += "";
-        }
+        // if (!newVal) {
+        //     currentOutput.value += "";
+        // }
+        newVal += number;
+        currentOutput.value += number;
+    } else if (!operator) { // keep the number value when clicking equal button
         newVal += number;
         currentOutput.value += number;
     } else {
