@@ -124,7 +124,7 @@ resultButton.addEventListener("click", () => {
     newVal = parseFloat(newVal);
     // console.log(prevVal);
     // console.log(newVal);
-    if (newVal) {
+    if (newVal || newVal === 0) { // allow NaN+0 = NaN
         switch (operator) {
             case "+":
                 resultVal = prevVal + newVal;
