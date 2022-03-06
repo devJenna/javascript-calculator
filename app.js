@@ -44,6 +44,9 @@ const numberButton = document.querySelectorAll(".number");
 const onClickNumber = function () {
     number = this.value;
     if (resultVal) { // if there is previous calculation
+        if (number === ".") { // add this part to not allow decimal at the end of the result
+            return;
+        }
         prevVal = resultVal;
         resultVal = "";
         newVal += number;
