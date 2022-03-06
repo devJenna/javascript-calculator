@@ -20,22 +20,19 @@ clearButton.addEventListener("click", function () {
 });
 
 plminusButton.addEventListener("click", function () {
-    // resultVal = currentOutput.value * -1;
-    // currentOutput.value = resultVal;
+    resultVal = currentOutput.value * -1;
+    currentOutput.value = resultVal;
     // prevVal = resultVal;
-    newVal = currentOutput.value * -1;
-    currentOutput.value = newVal;
+    // newVal = currentOutput.value * -1;
+    // currentOutput.value = newVal;
 });
 
 percentButton.addEventListener("click", function () {
     resultVal = currentOutput.value * 0.01;
     currentOutput.value = resultVal;
-    // console.log(prevVal); 
-    // console.log(newVal); 
-    // console.log(resultVal); 
 
-    prevVal = resultVal;
-    resultVal = "";
+    // prevVal = resultVal;
+    // resultVal = "";
 
     // console.log(prevVal); 
     // console.log(newVal); 
@@ -47,20 +44,33 @@ const numberButton = document.querySelectorAll(".number");
 // using for loop
 const onClickNumber = function () {
     number = this.value;
-    if (operator) {
-        // if (!newVal) {
-        //     currentOutput.value += "";
-        // }
+    if (resultVal) { // if there is previous calculation
+        prevVal = resultVal;
+        resultVal = "";
         newVal += number;
-        currentOutput.value += number;
-    } else if (!operator) { // keep the number value when clicking equal button
-        newVal += number;
-        currentOutput.value += number;
-    } else {
-        prevVal += number;
-        currentOutput.value += number;
+        // currentOutput.value = newVal;
+        currentOutput.value += number; // display all the inputs
+        console.log(prevVal);
+        console.log(newVal);
+        console.log(resultVal);
+    } else { // no previous calcaulation result
+        if (operator) { // start with operator
+            newVal += number;
+            currentOutput.value += number;
+            console.log(prevVal);
+            console.log(newVal);
+            console.log(resultVal);
+        } else { // start with number
+            prevVal += number;
+            // currentOutput.value = prevVal;
+            currentOutput.value += number;
+            console.log(prevVal);
+            console.log(newVal);
+            console.log(resultVal);
+        }
     }
 };
+
 for (let i = 0; i < numberButton.length; i++) {
     numberButton[i].addEventListener("click", onClickNumber);
 };
@@ -95,9 +105,9 @@ const onClickOperator = function () {
         newVal = "";
     }
     // decimalClicked = false;
-    if (prevVal) {
-        operator = op;
-    }
+    //     else  {
+    //     operator = op;
+    // }
 
     // // make operator visible whether the input starts with the number or operator
     operator = op;
@@ -136,23 +146,36 @@ resultButton.addEventListener("click", () => {
         // console.log(newVal);
         // console.log(resultVal);
         prevVal = resultVal;
-
-        newVal = "";
+        // newVal = "";
         operator = "";
-
         // currentOutput.value = resultVal;
-        // console.log(prevVal);
-        // console.log(newVal);
-        // console.log(resultVal);
+        console.log(prevVal);
+        console.log(newVal);
+        console.log(resultVal);
 
+        // } else {
+        //     resultVal = newVal;
+        //     // alert("Enter number first.");
+        //     // currentOutput.value = "";
     } else {
-        resultVal = newVal;
-        // alert("Enter number first.");
-        // currentOutput.value = "";
+        if (operator) {
+            resultVal = newVal; // (1+= NaN)
+            // resultVal = prevVal; // keep the value (1+= 1)
+            console.log(prevVal);
+            console.log(newVal);
+            console.log(resultVal);
+        } else { // keep the prevVal after enter result button (1=1)
+            resultVal = prevVal;
+            console.log(prevVal);
+            console.log(newVal);
+            console.log(resultVal);
+        }
     }
 
     currentOutput.value = resultVal;
-
+    // prevVal = resultVal;
+    newVal = "";
+    // operator = "";
 });
 
 
