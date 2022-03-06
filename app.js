@@ -39,7 +39,6 @@ percentButton.addEventListener("click", function () {
     // console.log(resultVal); 
 });
 
-
 const numberButton = document.querySelectorAll(".number");
 // using for loop
 const onClickNumber = function () {
@@ -48,6 +47,7 @@ const onClickNumber = function () {
         prevVal = resultVal;
         resultVal = "";
         newVal += number;
+        // prevVal += number;
         // currentOutput.value = newVal;
         currentOutput.value += number; // display all the inputs
         console.log(prevVal);
@@ -55,18 +55,30 @@ const onClickNumber = function () {
         console.log(resultVal);
     } else { // no previous calcaulation result
         if (operator) { // start with operator
-            newVal += number;
-            currentOutput.value += number;
-            console.log(prevVal);
-            console.log(newVal);
-            console.log(resultVal);
-        } else { // start with number
-            prevVal += number;
-            // currentOutput.value = prevVal;
-            currentOutput.value += number;
-            console.log(prevVal);
-            console.log(newVal);
-            console.log(resultVal);
+            if (number === ".") { // decimal
+                if (decimalClicked != true) {
+                    newVal += number;
+                    decimalClicked = true;
+                    currentOutput.value += number;
+                }
+            }
+            else { // no decimal
+                newVal += number;
+                currentOutput.value += number;
+            }
+        } else { // start with number 
+            if (number === ".") { // decimal
+                if (decimalClicked != true) {
+                    prevVal += number;
+                    decimalClicked = true;
+                    currentOutput.value = prevVal;
+                }
+            }
+            else { // no decimal
+                prevVal += number;
+                currentOutput.value += number;
+                // currentOutput.value += prevVal;
+            }
         }
     }
 };
@@ -100,11 +112,14 @@ const onClickOperator = function () {
                 resultVal = newVal;
                 break;
         }
-        // decimalClicked = false;
+        // console.log(prevVal);
+        // console.log(newVal);
+        // console.log(resultVal);
+        decimalClicked = false;
         prevVal = resultVal;
         newVal = "";
     }
-    // decimalClicked = false;
+    decimalClicked = false;
     //     else  {
     //     operator = op;
     // }
@@ -146,12 +161,12 @@ resultButton.addEventListener("click", () => {
         // console.log(newVal);
         // console.log(resultVal);
         prevVal = resultVal;
-        // newVal = "";
+        newVal = "";
         operator = "";
         // currentOutput.value = resultVal;
-        console.log(prevVal);
-        console.log(newVal);
-        console.log(resultVal);
+        // console.log(prevVal);
+        // console.log(newVal);
+        // console.log(resultVal);
 
         // } else {
         //     resultVal = newVal;
@@ -161,14 +176,15 @@ resultButton.addEventListener("click", () => {
         if (operator) {
             resultVal = newVal; // (1+= NaN)
             // resultVal = prevVal; // keep the value (1+= 1)
-            console.log(prevVal);
-            console.log(newVal);
-            console.log(resultVal);
+            // console.log(prevVal);
+            // console.log(newVal);
+            // console.log(resultVal);
+            prevVal = "";
         } else { // keep the prevVal after enter result button (1=1)
             resultVal = prevVal;
-            console.log(prevVal);
-            console.log(newVal);
-            console.log(resultVal);
+            // console.log(prevVal);
+            // console.log(newVal);
+            // console.log(resultVal);
         }
     }
 
